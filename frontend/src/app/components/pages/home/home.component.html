@@ -1,0 +1,47 @@
+<ul>
+  <li *ngFor="let book of books">
+    <a [routerLink]="['/book', book.id]">
+      <img [src]="book.imageUrl" [alt]="book.name" />
+
+      <div class="content">
+        <div class="name">
+          {{book.name}}
+        </div>
+        <span class="favourite {{book.favourite?'':'not'}}">
+          ♥
+        </span>
+
+        <div class="product-item-footer">
+          <div class="stars">
+            <span *ngFor="let star of stars" (click)="rate(book, star)" style="cursor: pointer; font-size: 20px;"
+              aria-label="Rate {{star}} stars"> {{star <= (book.rating || 0) ? '⭐' : '☆' }} </span>
+          </div>
+
+
+          <div class="tags">
+            <span *ngFor="let tag of book.tags">
+              {{tag}}
+            </span>
+          </div>
+        </div>
+
+        <div class="bottomr-row">
+          <div class="author">
+            @for (author of book.Author || []; track author) {
+            <span>
+              {{author}}
+            </span>
+            }
+          </div>
+
+          <div class="price">
+            <span>
+              {{book.price | currency}}
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </a>
+  </li>
+</ul>
