@@ -1,3 +1,4 @@
+<app-search></app-search>
 <ul>
   <li *ngFor="let book of books">
     <a [routerLink]="['/book', book.id]">
@@ -27,7 +28,7 @@
 
         <div class="bottomr-row">
           <div class="author">
-            @for (author of book.Author || []; track author) {
+            @for (author of book.Author || []; track $index) {
             <span>
               {{author}}
             </span>
@@ -36,7 +37,7 @@
 
           <div class="price">
             <span>
-              {{book.price | currency}}
+              {{book.price | currency: '£'}}
             </span>
           </div>
         </div>
